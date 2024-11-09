@@ -1,0 +1,499 @@
+.box {
+	width: 100%;
+	height: 4570px;
+    background-color: white;
+}
+.vtop{
+    width: 100%;
+    height: 36px;
+    background-color: #333333;
+    border-radius: 0px;
+}
+.vtop .container{
+    position: relative;
+    width: 122px;
+	height: 21px;
+    margin-right: 255px;
+    margin-top: 7px;
+    float:right;
+    /* background-color: gold; */
+}
+.vtop .container ul>li{
+    font-size: 12px;
+    float: right;
+    
+    color: #ffffff;
+    
+}
+.vtop .container .shu{
+    margin: 0 8px ;
+}
+
+.nav{
+    width: 100%;
+    height: 76px;
+    /* background-color: yellow; */
+}
+.nav .container {
+    position: relative;
+	width: 1185px;
+	height: 76px;
+    padding: 8px  0  8px 14px;
+    box-sizing: border-box;
+    /* background-color: skyblue; */
+    margin: 0 auto;
+}
+.nav .container  .logo {
+	width: 215px;
+	height: 60px;
+    background-image: url(../images/切图/logo.png);
+    float: left;
+    background-repeat: no-repeat;
+    /* background-color: red; */
+}
+.search {
+    position: relative;
+    width: 400px;
+	height: 38px;
+    margin-top: 12px;
+    margin-left: 425px;
+    /* background-color: burlywood; */
+}
+.search .fdj{
+    position: absolute;
+    top: 11px;
+    left: 14px;
+    width: 16px;
+	height: 16px;
+    display: inline-block;
+    background-image: url(../images/切图/图标/搜索.png);
+    /* background-color: orange; */
+}
+.search input{
+    
+    width: 400px;
+	height: 40px;
+    float: left;
+    padding-left: 49px;
+    box-sizing: border-box;
+    border-radius: 19px;
+    border: solid 2px #2b6e5a;
+}
+.search .anniu{  
+    position: absolute;
+    top: 1px;
+    right: -5px; 
+    width: 90px;
+    height: 38px;
+    padding-left: 29px;
+    padding-top: 7px;
+    box-sizing: border-box;
+    font-family: PingFangSC-Regular;
+	font-size: 16px;
+	font-weight: normal;
+	font-stretch: normal;
+	line-height: 24px;
+	letter-spacing: 0px;
+	color: #ffffff;
+    float: right;
+    border-radius:0 19px 19px 0;
+    background-color: #2b6e5a;
+}  
+.nav .container .gouwuche{
+    position: relative;
+    position: absolute;
+    top: 23px;
+    right:  0;
+    width: 150px;
+	height: 38px;
+    padding: 8px 50px 8px 58px  ;
+    font-family: PingFangSC-Regular;
+    border-radius: 19px;
+	border: solid 1px #060001; 
+    box-sizing: border-box;
+    font-size: 13px;
+    float: left ;  
+    color: #808080;
+    /* background-color: black; */
+} 
+.nav .container .gouwuche .gwc{
+    position: absolute;
+    width: 26px;
+	height: 26px;
+    /* background-color: #2b6e5a; */
+    top: 6px;
+    left:11px;
+    background-image: url(../images/切图/图标/购物车.png);
+}
+.nav .container .gouwuche .red{
+    position: absolute;
+    top:8px;
+    right: 4px;
+    width: 21px;
+	height: 21px;
+    line-height: 21px;
+    color:#ffffff;
+    text-align: center;
+    background-color: red;
+    border-radius: 21px;    
+}
+.snav {
+    width: 100%;
+	height: 70px;
+    /* background-color: yellow; */
+    padding-top:27px ;
+    margin-top: 32px;
+    box-sizing: border-box;
+}
+.snav .container{
+    width: 504px;
+	height: 22px;
+    /* background-color: blue; */
+    margin:0px auto;
+}
+.snav .container li{
+    margin-right: 51px;
+    font-size: 14px;
+    color: #666666;
+    float: left;
+}
+.snav .container li:hover{
+    width: 28px;
+	height: 20px;
+    font-size: 14px;
+    /* background-color: red; */
+    border-bottom: 2px solid #a3c3b8;
+}
+.snav .container li:last-child:hover{
+    margin-right: 0;
+}
+.snav .container li:nth-child(5){
+    width: 28   px;
+	height: 20px;
+    /* background-color: red; */
+    border-bottom: 2px solid #a3c3b8;
+}
+.snav .container li:last-child{
+    margin-right: 0;
+}
+.mb{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 50px;
+    background-color: #f8f8f8;
+}
+.mb .container {
+    display: flex;
+    align-items: center;
+    width: 1200px;
+    height: 100%;
+    /* background-color: green; */
+}
+.mb .container ul{
+    display: flex;
+    flex-direction: row;
+    color: #333333;
+    justify-content: space-between;
+}
+.mb .container .cn {
+    width: 90px;
+    height: 12px;
+    margin-left: 15px;
+    font-size: 12px;
+    /* background-color: #333; */
+}
+.box2{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 3772px;
+    background-color: #f8f8f8;
+}
+.box2 .container{
+    width: 1200px;
+    height:3702px;
+    background-color: #ffffff;
+}
+.cnav{
+    width: 100%;
+    height: 132px;
+    display: flex;
+    background-color: #f8f8f8;
+    justify-content: center;
+}
+.cnav .container {
+        width: 1200px;
+        height: 132px;
+        background-color: #ffffff;
+        border-radius: 0px;
+}
+.cnav .container  .top ul{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    width: 350px;
+    height: 45px;
+    padding-left:15px ;
+    box-sizing: border-box;
+    /* background-color: green; */
+}
+.cnav .container  .center ul{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    width: 630px;
+    height: 45px;
+    padding-left:15px ;
+    box-sizing: border-box;
+    /* background-color: green; */
+}
+.cnav .container  .down ul{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    width: 230px;
+    height: 45px;
+    padding-left:15px ;
+    box-sizing: border-box;
+    /* background-color: green; */
+}
+.cnav .container .top{
+    width: 100%;
+    height: 45px;
+    /* background-color: red; */
+    border-bottom: 1px solid #d2d2d2;
+}
+.cnav .container .center{
+    width: 100%;
+    height: 45px;
+    /* background-color: red; */
+    border-bottom: 1px solid #d2d2d2;
+}
+.cnav .container .down{
+    width: 100%;
+    height: 45px;
+    /* background-color: red; */
+    border-bottom: 1px solid #d2d2d2;
+}
+.cnav .container .down li{
+    position: relative;
+}
+.cnav .container .down .s1 ,.s2{
+    position: absolute;
+    top: 4px;
+    right: -12px;
+    width: 8px;
+	height: 11px;
+    /* background-color: red; */
+    background-image: url(../images/切图/图标/价格排序.png);
+}
+.cnav .container .down .s2{
+    background-repeat: no-repeat;
+    background-image: url(../images/切图/图标/上架时间排序.png);
+}
+.qb{
+    color: #43846f;
+}
+.content1{
+    width: 100%;
+    height: 823px;
+    display: flex;
+    justify-content: center;
+    margin-top: 62px;
+    background-color: skyblue;
+}
+.content1 .container{
+       
+        width: 1200px;
+        height: 823px;
+        /* background-color: yellowgreen; */
+}
+.content1 .container .top{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      width: 100%;
+      height: 51px;
+      /* margin-bottom: 34px; */
+      /* background-color: pink; */
+      font-size: 28px;
+}
+.content1 .container .top .p2{
+    font-size: 14px;
+    color: #666666;
+}
+.content1 .container .down{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 750px;
+    /* margin-top: 34px; */
+    /* background-color: bisque; */
+}
+.content1 .container .down .box3{
+    width: 270px;
+    height: 344px;
+    margin-top: 31px;
+    /* background-color: red; */
+}
+.content1 .container .down .box3 .top{
+     width: 270px;
+     height: 270px;
+     /* background-color: skyblue; */
+}
+
+.content1 .container .down .box3 .top img{
+    width: 270px;
+    height: 270px;
+}
+.content1 .container .down .box3 .down{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 15px;
+    box-sizing: border-box;
+    width: 270px;
+    height: 74px;
+    /* background-color: green; */
+}
+.content1 .container  .bian{
+    border: 2px solid #f8f8f8;
+}
+.content1 .container .down .p1{
+    color: #666666;
+}
+.content1 .container  .down .p2{
+   color: #e56a69;
+}
+.content1 .container  .down .p3{
+       position: absolute;
+       bottom: 20px;
+       right: 20px;
+       background-image: url(../images/切图/图标/购物车2.png);
+       background-repeat: no-repeat;
+       background-size: 15px 15px;
+       background-position: 6px 7px;
+       border: 1px solid #43846f;
+       border-radius: 30px;
+        width: 30px;
+        height: 30px;
+        background-color: #43846f;
+}
+.content1 .container  .down span{
+   color: #bbbbbb;
+   font-size: 12px;     
+}
+.yj{
+    width: 100%;
+    height: 182px;
+    /* margin-top: 120px; */
+    padding-top:50px ;
+    box-sizing: border-box;
+    background-color: #222222;
+}
+.yj .container{
+width: 1200px;
+height: 100%;
+/* background-color: greenyellow; */
+margin: 0 auto;
+}
+.yj .container li{
+width: 72px;
+height: 81px;
+float: left;
+text-align: center;
+margin-right: 196px;
+color: #ffffff;
+/* background-color: skyblue; */
+}
+.yj .container li:nth-child(2){
+width: 126px;
+position: relative;
+text-align: center;
+line-height: 130px;
+}
+.yj .container li:last-child{
+margin-right: 0;
+}
+.yj .container li img{
+width: 50px;
+height: 50px;
+margin-left: 7px;
+}
+.yj .container li .kk{
+ position: absolute;
+ top: 0;
+ left: 30px;
+}
+
+.last {
+    width: 100%;
+    height: 330px;
+    background-color: #222222;
+   
+    /* margin-top: 5px; */
+}
+.last .container{
+width: 1200px;
+height: 250px;
+/* background-color: red; */
+padding-top:48px ;
+box-sizing: border-box;
+margin: 0 auto;
+border-top:5px solid gray;
+}
+.last .container .container2{
+width: 956px;
+height: 150px;
+margin: 0 auto;
+/* background-color: pink; */
+}
+.last .container .logo{
+    width: 215px;
+    height: 60px;
+    float: left;
+    /* background-color: skyblue; */
+    background-image: url(../images/切图/logo.png);
+}
+.last .container .right{
+ width: 600px;
+ height: 100%;
+ float: right;
+ /* background-color: blue; */
+}
+.last .container .right ul{
+float: left;
+color: #ffffff;
+margin-right: 70px;
+}
+.last .container .right ul li:nth-child(2){
+margin-top: 20px;
+}
+.last .container .right ul:last-child{
+margin-right: 0;
+}
+.last .container .right li{
+margin-top: 10px;
+font-size: 12px;
+}
+.last .container .right .bb{
+font-size: 14px;
+}
+.last .container .right li:last-child{
+margin-right: 0;
+}
+.last2{
+    width: 100%;
+    height: 100px;
+    background-color: #333333;
+    color: #999999;
+    text-align: center;
+    line-height: 100px;
+}

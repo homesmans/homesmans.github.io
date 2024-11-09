@@ -1,0 +1,358 @@
+body {
+    background-color: #fafafa;
+}
+
+/* 1. 顶部导航 */
+.navbar-top {
+    width: 100%;
+    height: 75px;
+    background-color: white;
+}
+
+.navbar-top .container {
+    width: 1200px;
+    height: 100%;
+
+    /* 左右居中 */
+    margin: 0 auto;
+}
+
+/* (1).logo */
+.navbar-top .logo {
+    width: 135px;
+    height: 35px;
+    padding-top: 20px;
+    float: left;
+}
+
+.navbar-top .logo>img {
+    width: 100%;
+    height: 100%;
+}
+
+
+/* (2).中间 搜索框 */
+.navbar-top .middle {
+    width: 570px;
+    height: 40px;
+    float: left;
+
+    /* 顶部内边距 */
+    padding-top: calc((75px - 40px)/2);
+    margin-left: 180px;
+}
+
+.navbar-top .middle .location {
+    width: 52px;
+    height: 20px;
+    padding-top: 10px;
+    text-align: right;
+    float: left;
+
+    /* 相对定位 */
+    position: relative;
+}
+
+.navbar-top .middle .location img {
+    width: 20px;
+    height: 20px;
+
+    /* 绝对定位 */
+    position: absolute;
+    left: 0;
+    top: 11px;
+}
+
+.container .middle .ipt {
+    width: 500px;
+    height: 100%;
+    float: right;
+    /* 相对定位 */
+    position: relative;
+}
+
+.container .middle .ipt input {
+    width: 415px;
+    height: 100%;
+    float: left;
+    padding-left: 45px;
+    border: 1px solid #29b7f5;
+    box-sizing: border-box;
+}
+
+.container .middle .ipt .btn {
+    width: 85px;
+    height: 100%;
+    background-color: #29b7f5;
+    float: left;
+    color: white;
+    /* 文字左右居中 */
+    text-align: center;
+    /* 行高等于高度 */
+    line-height: 40px;
+}
+
+.container .middle .ipt img {
+    width: 20px;
+    height: 20px;
+
+    /* 绝对定位 */
+    position: absolute;
+    left: 15px;
+    top: 10px;
+}
+
+/* (3). 顶部导航 - 工具 */
+.navbar-top .tool {
+    width: 220px;
+    height: 40px;
+    float: right;
+    padding-top: 17.5px;
+}
+
+.navbar-top .tool ul {
+    /* 溢出隐藏 (解决父元素高度为0) */
+    overflow: hidden;
+    padding-top: 10px;
+    float: left;
+}
+
+.navbar-top .tool ul li {
+    float: left;
+    margin-right: 25px;
+}
+
+.navbar-top .avatar {
+    float: right;
+}
+
+
+/* 2. 页面导航 */
+.nav-list {
+    width: 100%;
+    height: 50px;
+    background-color: white;
+}
+
+.nav-list .container {
+    width: 1200px;
+    height: 100%;
+    margin: 0 auto;
+}
+
+.nav-list .container ul {
+    overflow: hidden;
+}
+
+.nav-list .container ul li {
+    height: 50px;
+    float: left;
+    font-size: 20px;
+    margin-right: 45px;
+
+    /* 行高等于高度，文字垂直居中 */
+    line-height: 50px;
+}
+
+.nav-list .second {
+    color: #29b7f5;
+    border-bottom: 3px solid #29b7f5;
+    box-sizing: border-box;
+}
+
+/* 3.面包屑 */
+.crumbs {
+    width: 100%;
+}
+
+.crumbs .container {
+    width: 1200px;
+    margin: 0 auto;
+}
+
+.crumbs .container ul {
+    overflow: hidden;
+}
+
+.crumbs .container ul li {
+    float: left;
+    margin-right: 20px;
+    line-height: 65px;
+    font-size: 12px;
+
+    /* 相对定位 */
+    position: relative;
+}
+
+.crumbs .container ul li span {
+    width: 12px;
+    height: 12px;
+
+    /* 绝对定位 */
+    position: absolute;
+    right: -16px;
+    top: 26px;
+
+    line-height: 12px;
+}
+
+
+/* 4. 名师风采 */
+.introduce {
+    width: 100%;
+    height: 565px;
+}
+
+.introduce .container {
+    width: 1200px;
+    height: 100%;
+    margin: 0 auto;
+    padding-top: 1px;
+    box-sizing: border-box;
+    background-color: white;
+}
+
+.introduce .container .title {
+    width: 100%;
+    height: 45px;
+    margin-top: 45px;
+    margin-bottom: 45px;
+
+    padding-left: 45px;
+    box-sizing: border-box;
+}
+
+.introduce .content {
+    width: 100%;
+    height: 400px;
+    padding: 0 45px;
+    box-sizing: border-box;
+    position: relative;
+}
+
+/* 前进后退按钮 */
+.introduce .content span {
+    width: 50px;
+    height: 50px;
+    color: white;
+    background-color: #d8eff7;
+    border-radius: 15px;
+
+    position: absolute;
+    top: calc(50% - 25px);
+
+    font-size: 20px;
+
+    text-align: center;
+    line-height: 50px;
+}
+
+.introduce .content span.prev {
+    left: -80px;
+}
+
+.introduce .content span.next {
+    right: -80px;
+}
+
+/* 多列浮动布局 */
+.introduce .content>div {
+    width: calc(33.3333% - 25px + 25px/3);
+    height: 100%;
+    float: left;
+    margin-right: 25px;
+}
+
+.introduce .content .last {
+    margin-right: 0;
+}
+
+.introduce .content .phone {
+    width: 100%;
+}
+
+.introduce .content .details {
+    text-align: center;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+
+.introduce .content .details .name,
+.introduce .content .details .time {
+    font-size: 18px;
+    margin: 7px 0;
+}
+
+.introduce .content .details .time {
+    color: #8cbecf;
+}
+
+
+/* 5. 页脚 */
+.footer {
+    width: 100%;
+    height: 145px;
+    background-color: #414141;
+    margin-top: 50px;
+}
+
+.footer .container {
+    width: 1200px;
+    height: 100%;
+    margin: 0 auto;
+}
+
+.footer .container .up {
+    width: 100%;
+    height: 75px;
+}
+
+.footer .container .up ul {
+    overflow: hidden;
+}
+
+.footer .container .up ul li {
+    float: left;
+    margin-right: 55px;
+    font-size: 20px;
+    color: white;
+    line-height: 75px;
+}
+
+.footer .container .up .deeplink li {
+    margin-right: 0;
+    margin-left: 55px;
+
+    position: relative;
+}
+
+.footer .container .up .deeplink li span {
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    left: -30px;
+    top: calc(50% - 12.5px);
+}
+.weib{
+    background: url("../images/weib.png") no-repeat 0 0/100%;
+}
+.weixin{
+    background: url("../images/weixin.png") no-repeat 0 0/100%;
+}
+
+.footer .container .down{
+    height: 65px;
+    color: #999;
+    font-size: 12px;
+    text-align: center;
+}
+.footer .container .down p{
+    margin-bottom: 10px;
+}
+
+.fl {
+    float: left;
+}
+.fr {
+    float: right;
+}

@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Music Player with Lyrics</title>
+<style>
+    body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+        background-image: url('./images/b1.jpg'); /* 替换为你的背景图片URL */
+        background-size: cover;
+        background-position: center;
+        font-family: Arial, sans-serif;
+        color: #333;
+    }
+    .main-container {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        max-width: 1400px; /* 增加宽度以容纳更大的专辑封面和间距 */
+        margin: 0 auto; /* 居中对齐 */
+    }
+    .album-art {
+        width: 800px; /* 增大专辑封面的大小 */
+        height: 421px;
+        margin-right: 200px; /* 增加与播放器之间的间距 */
+        background: url('./images/贾斯丁.png') no-repeat center center / cover; /* 替换为你的专辑封面图片URL */
+        border-radius: 8px;
+    }
+    .player-container {
+        width: 100%;
+        background: rgba(255, 255, 255, 0.9); /* 半透明背景 */
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    audio {
+        width: 100%;
+        outline: none;
+        -webkit-appearance: none;
+        appearance: none;
+        background: transparent;
+        border: none;
+    }
+    audio::-webkit-media-controls-panel {
+        background: rgba(255, 255, 255, 0.9); /* 半透明背景 */
+        border-radius: 8px;
+    }
+    audio::-webkit-media-controls-play-button,
+    audio::-webkit-media-controls-timeline-container,
+    audio::-webkit-media-controls-current-time-display,
+    audio::-webkit-media-controls-time-remaining-display,
+    audio::-webkit-media-controls-mute-button,
+    audio::-webkit-media-controls-volume-slider-container {
+        color: #333;
+    }
+    audio::-webkit-media-controls-timeline {
+        height: 4px;
+        background: #ddd;
+        border-radius: 2px;
+    }
+    audio::-webkit-media-controls-timeline::-webkit-progress-bar-value {
+        background: #ff4d4d;
+        border-radius: 2px;
+    }
+    .controls {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 10px;
+        width: 100%;
+    }
+    .controls button {
+        background: transparent;
+        border: none;
+        padding: 5px; /* 减少内边距使按钮变小 */
+        cursor: pointer;
+        transition: opacity 0.3s;
+    }
+    .controls button img {
+        width: 24px; /* 设置图标的固定大小 */
+        height: 24px;
+    }
+    .controls button:hover {
+        opacity: 0.7;
+    }
+    #lyrics-container {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        margin-top: 20px;
+    }
+    #lyrics {
+        height: 200px;
+        overflow-y: hidden; /* 移除滚动条 */
+        border: 1px solid #ccc;
+        padding: 10px;
+        width: 100%;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.9); /* 半透明背景 */
+        color: #333;
+        text-align: center; /* 居中对齐歌词 */
+    }
+    .lyric-line {
+        transition: transform 0.5s ease;
+    }
+    .current-lyric {
+        color: #4caf50; /* 更改高亮颜色为绿色 */
+        font-weight: bold;
+    }
+    #playlist {
+        list-style-type: none;
+        padding: 0;
+        margin: 20px 0;
+        width: 100%;
+        max-width: 600px;
+    }
+    #playlist li {
+        cursor: pointer;
+        padding: 10px;
+        border-bottom: 1px solid #eee;
+        transition: background-color 0.3s;
+    }
+    #playlist li:hover {
+        background-color: #f0f0f0;
+    }
+</style>
+</head>
+<body>
+<div class="main-container">
+    <div class="album-art"></div>
+    <div class="player-container">
+        <audio id="player" controls>
+            <source src="https://music.163.com/song/media/outer/url?id=33894312.mp3" type="audio/mpeg">
+        </audio>
+        <div class="controls">
+            <button id="prev"><img src="./images/上一首.png" alt="Prev" /></button>
+            <button id="playPause"><img src="./images/播放.png" alt="Play" /></button> <!-- 默认显示播放图标 -->
+            <button id="next"><img src="./images/下一首.png" alt="Next" /></button>
+        </div>
+        <h3 id="currentLyric">---</h3>
+        <div id="lyrics-container">
+            <div id="lyrics"></div>
+        </div>
+    </div>
+</div>
+
+<h2>QQ音乐</h2>
+<ul id="playlist">
+    <li data-src="https://music.163.com/song/media/outer/url?id=33894312.mp3" data-lyric='[00:00.000] 作词 : 张国祥
+[00:01.000] 作曲 : 汤小康
+[00:12.570]难以忘记初次见你
+[00:16.860]一双迷人的眼睛
+[00:21.460]在我脑海里
+[00:23.960]你的身影 挥散不去
+[00:30.160]握你的双手感觉你的温柔
+[00:34.940]真的有点透不过气
+[00:39.680]你的天真 我想珍惜
+[00:43.880]看到你受委屈 我会伤心
+[00:48.180]喔
+[00:50.340]只怕我自己会爱上你
+[00:55.070]不敢让自己靠的太近
+[00:59.550]怕我没什么能够给你
+[01:04.030]爱你也需要很大的勇气
+[01:08.190]只怕我自己会爱上你
+[01:12.910]也许有天会情不自禁
+[01:17.380]想念只让自己苦了自己
+[01:21.840]爱上你是我情非得已
+[01:28.810]难以忘记初次见你
+[01:33.170]一双迷人的眼睛
+[01:37.700]在我脑海里 你的身影 挥散不去
+[01:46.360]握你的双手感觉你的温柔
+[01:51.120]真的有点透不过气
+[01:55.910]你的天真 我想珍惜
+[02:00.150]看到你受委屈 我会伤心
+[02:04.490]喔
+[02:06.540]只怕我自己会爱上你
+[02:11.240]不敢让自己靠的太近
+[02:15.750]怕我没什么能够给你
+[02:20.200]爱你也需要很大的勇气
+[02:24.570]只怕我自己会爱上你
+[02:29.230]也许有天会情不自禁
+[02:33.680]想念只让自己苦了自己
+[02:38.140]爱上你是我情非得已
+[03:04.060]什么原因 耶
+[03:07.730]我竟然又会遇见你
+[03:13.020]我真的真的不愿意
+[03:16.630]就这样陷入爱的陷阱
+[03:20.700]喔
+[03:22.910]只怕我自己会爱上你
+[03:27.570]不敢让自己靠的太近
+[03:32.040]怕我没什么能够给你
+[03:36.560]爱你也需要很大的勇气
+[03:40.740]只怕我自己会爱上你
+[03:45.460]也许有天会情不自禁
+[03:49.990]想念只让自己苦了自己
+[03:54.510]爱上你是我情非得已
+[03:58.970]爱上你是我情非得已
+[04:03.000]'>情非得已 - zxxy</li>
+    <!-- 可以在这里添加更多的歌曲项 -->
+    
+</ul>
+
+<script>
+var player = document.getElementById('player');
+var lyricsContainer = document.getElementById('lyrics');
+var currentLyric = document.getElementById('currentLyric');
+var playlist = document.getElementById('playlist');
+var currentIndex = 0;
+var songs = Array.from(playlist.children);
+let isPlaying = false; // 添加状态变量来跟踪播放状态
+
+// 解析歌词
+function parseLyric(lyric) {
+    var lines = lyric.split('\n').filter(Boolean);
+    return lines.map(line => {
+        var match = line.match(/\[(\d{2}):(\d{2}\.\d{3})\](.*)/);
+        return {
+            time: parseInt(match[1], 10) * 60 + parseFloat(match[2]),
+            text: match[3]
+        };
+    });
+}
+
+// 更新歌词
+function updateLyric(currentTime, lyrics) {
+    var currentLyric = lyrics.find(lyric => lyric.time <= currentTime && (lyric.time + 0.5) > currentTime);
+    if (currentLyric) {
+        var currentLyricElement = document.querySelector('.current-lyric');
+        if (currentLyricElement) {
+            currentLyricElement.classList.remove('current-lyric');
+        }
+        var lyricElement = document.querySelector(`[data-time='${currentLyric.time}']`);
+        if (lyricElement) {
+            lyricElement.classList.add('current-lyric');
+            // 滚动歌词
+            smoothScrollTo(lyricElement);
+        }
+        currentLyric.innerText = currentLyric.text;
+    }
+}
+
+// 平滑滚动到指定元素
+function smoothScrollTo(target) {
+    const containerHeight = lyricsContainer.offsetHeight;
+    const lyricTop = target.offsetTop - lyricsContainer.offsetTop;
+    const lyricHeight = target.offsetHeight;
+    const scrollPosition = lyricTop - (containerHeight / 2) + (lyricHeight / 2);
+    let start = performance.now();
+    let from = lyricsContainer.scrollTop;
+
+    function animate(time) {
+        const elapsed = time - start;
+        const progress = Math.min(elapsed / 500, 1); // 500ms 动画时间
+        const to = scrollPosition;
+        const value = from + (to - from) * progress;
+        lyricsContainer.scrollTop = value;
+        if (progress < 1) {
+            requestAnimationFrame(animate);
+        }
+    }
+
+    requestAnimationFrame(animate);
+}
+
+// 初始化歌词
+function initLyric(lyric) {
+    var lyrics = parseLyric(lyric);
+    lyrics.forEach(lyric => {
+        var p = document.createElement('p');
+        p.textContent = lyric.text;
+        p.setAttribute('data-time', lyric.time);
+        p.classList.add('lyric-line');
+        lyricsContainer.appendChild(p);
+    });
+    return lyrics;
+}
+
+// 切换歌曲
+function switchSong(index) {
+    var li = songs[index];
+    var src = li.getAttribute('data-src');
+    var lyric = li.getAttribute('data-lyric');
+    player.src = src;
+    lyricsContainer.innerHTML = ''; // 清空旧歌词
+    currentLyric.innerText = '---';
+    var lyrics = initLyric(lyric);
+    player.play();
+    player.ontimeupdate = function() {
+        updateLyric(player.currentTime, lyrics);
+    };
+    player.onended = function() {
+        // 当音频播放结束时，滚动到最后一行歌词
+        var lastLyricElement = document.querySelector('#lyrics .lyric-line:last-child');
+        if (lastLyricElement) {
+            lastLyricElement.classList.add('current-lyric');
+            smoothScrollTo(lastLyricElement);
+        }
+    };
+}
+
+// 上一首
+document.getElementById('prev').addEventListener('click', function() {
+    currentIndex = (currentIndex - 1 + songs.length) % songs.length;
+    switchSong(currentIndex);
+});
+
+// 下一首
+document.getElementById('next').addEventListener('click', function() {
+    currentIndex = (currentIndex + 1) % songs.length;
+    switchSong(currentIndex);
+});
+
+// 播放/暂停
+document.getElementById('playPause').addEventListener('click', function() {
+    if (player.paused || player.ended) {
+        player.play();
+        this.querySelector('img').src = './images/播放.png'; // 切换为暂停图标
+        isPlaying = true;
+    } else {
+        player.pause();
+        this.querySelector('img').src = './images/暂停.png'; // 切换回播放图标
+        isPlaying = false;
+    }
+});
+
+// 监听音频元素的 play 和 pause 事件
+player.addEventListener('play', function() {
+    document.getElementById('playPause').querySelector('img').src = './images/播放.png'; // 切换为暂停图标
+    isPlaying = true;
+});
+
+player.addEventListener('pause', function() {
+    document.getElementById('playPause').querySelector('img').src = './images/暂停.png'; // 切换回播放图标
+    isPlaying = false;
+});
+
+// 绑定点击事件
+playlist.addEventListener('click', function(e) {
+    if (e.target.tagName === 'LI') {
+        currentIndex = Array.from(playlist.children).indexOf(e.target);
+        switchSong(currentIndex);
+    }
+});
+
+// 默认加载第一首歌曲
+switchSong(0);
+
+// 手动滚动歌词
+lyricsContainer.addEventListener('wheel', function(e) {
+    e.preventDefault();
+    lyricsContainer.scrollTop += e.deltaY;
+});
+</script>
+</body>
+</html>

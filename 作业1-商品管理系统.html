@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>简易商品管理系统</title>
+<link rel="stylesheet" href="./resetCss.css">
+<script src="./jQuery.min.js"></script>
+<style>
+    /* CSS样式 */
+   /* CSS样式 */
+   body {
+        height: 100vh;  
+        min-height: 100%;
+        background-image: url('./images/nhz.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+     h1{
+        text-align: center;
+     }
+     form{
+        display: flex;
+        justify-content: center;
+        margin-top: 50px;
+     }
+     input{
+        width: 200px;
+        height: 23px;
+        border: 2px solid #000;
+        margin-right: 10px;
+        z-index: 1;
+     }
+     .search{
+        display: flex;
+        justify-content: center;
+        margin-top: 50px;
+     }
+     table{
+        display: flex;
+        justify-content: center;
+        margin-top: 50px;
+     }
+     .bb{
+        display: flex;
+        justify-content: center;
+        margin-top: 50px;
+     }
+     #searchInput{
+        width: 300px;
+        height: 50px;
+        border: 2px solid #000;
+        border-radius: 15px 0  0 15px;
+        margin-right: 0;
+     }
+     #searchButton{
+        border: 1px solid #000;
+        border-radius: 0 15px 15px 0 ;
+        background-color: skyblue;
+     }
+     table{
+        display: flex;
+        justify-content: center;
+        /* background-color: red; */
+        width: 1700px;
+        /* height: 400px; */
+     }
+     tr{
+        width: 100px;
+        height: 50px;
+        text-align: center;
+        background-color: skyblue;
+        
+     }
+     th{
+        text-align: center;
+     }
+     .bb{
+        width: 100px;
+        height: 50px;
+        font-size: 20px;
+        margin: 0 auto;
+        font-style: italic;
+        color: skyblue;
+     }
+</style>
+</head>
+<body>
+    <h1>简易商品管理系统</h1>
+    <form id="productForm">
+        名称:<input class="yy" type="text" id="name"> 
+        价格:<input class="yy" type="text" id="price">
+        库存:<input class="yy" type="text" id="stock">
+        图片:<input class="yy" type="file" accept="image/*" id="image">
+        <button type="button"  id="addButton">添加商品</button>
+    </form>
+    <div class="search">
+    <input type="text" id="searchInput" placeholder="输入商品名称搜索">
+    <button type="button" id="searchButton">搜索商品</button>
+</div>
+    <table id="productTable">
+        <tr id="one">
+            <th width="400px">名称</th>
+            <th width="400px">价格</th>
+            <th width="400px">库存</th> 
+            <th width="400px">预览</th>
+            <th width="400px">操作</th>
+        </tr>
+
+      
+        <!-- 商品信息行将被动态添加 -->
+    </table>
+    <div class="bb">总库存: <span id="totalStock">0</span></div>
+    <script>
+        $(document).ready(function() {
+            const $searchInput = $('#searchInput')
+            const $searchButton = $('#searchButton')
+            const $yy = $('.yy')
+            const $name = $('#name')
+            const $price = $('#price')
+            const $stock = $('#stock')
+            const $addButton = $('#addButton')
+            const $image = $('#image')
+            const $removeButton = $('.removeButton')
+            $(document).on('click','.removeButton', function() {
+                        const row = $(this).parent().parent();
+                        row.remove();
+                        updateTotalStock();
+             });
+
+
+            $addButton.click(function(){
+                  const imageVal = $image[0].files[0];
+                     if( $name.val()!= '' && $price.val()!= '' && $stock.val()!= ''  && imageVal && !isNaN($stock.val()) && !isNaN($price.val())){
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                        $('<tr></tr>').append(`<td>${$name.val()}</td>`) 
+                                      .append(`<td>${$price.val()}</td>`)
+                                      .append(`<td>${$stock.val()}</td>`)
+                                      .append(`<td><img src="${e.target.result}" alt="Image" width="100"></td>`)
+                                      .append(`<td><button class="removeButton">删除</button></td>`).insertAfter('#one')
+                                       $yy.val('')   
+                                       updateTotalStock();
+                                    };
+                                    reader.readAsDataURL(imageVal);
+                                       
+                     }
+                     else{
+                         alert('请确保所有必填项都已填写(部分内容输入必须为数字)，并选择图片。');
+                     }
+                        
+               })
+            $searchInput.focus(function(){
+                  $(this).css('border','2px solid skyblue')  
+            })
+            $searchInput.blur(function(){
+                  $(this).css('border','2px solid black')   
+            })
+        
+       // 实现搜索功能
+       function performSearch() {
+            const keyword = $searchInput.val().toLowerCase();
+            $('tr').not('#one').each(function() {
+                const name = $(this).find('td:eq(0)').text().toLowerCase();
+                //const price = $(this).find('td:eq(1)').text().toLowerCase();
+                //const stock = $(this).find('td:eq(2)').text().toLowerCase();
+                //const shouldDisplay =   price.includes(keyword) || stock.includes(keyword);
+                $(this)[name.includes(keyword) ? 'show' : 'hide']();
+            });
+        }
+        // 监听搜索按钮的 click 事件
+        $searchButton.click(performSearch);
+          function updateTotalStock() {
+                let totalStock = 0;
+            $('tr').not('#one').each(function() {
+                const stockCell = $(this).find('td:eq(2)').text().trim();
+                if (!isNaN(stockCell)) {
+                    totalStock += parseInt(stockCell, 10);
+                }
+            });
+            $('#totalStock').text(totalStock);
+        }
+      });
+    </script>
+</body>
+</html>

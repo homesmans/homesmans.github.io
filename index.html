@@ -1,17 +1,360 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <style>
-        body{
-          background-color: skyblue;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人项目作品集 - 梁智洲</title>
+    <link rel="stylesheet" href="./resetCss.css">
+    <style>
+        /* 基础样式 */
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background-color: #f4f4f4;
         }
-  </style>
+
+        /* 容器样式 */
+        .container {
+            display: flex;
+            width: 100%;
+            height: 100vh; /* 高度占满整个视口 */
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        /* 左侧栏样式 */
+        .sidebar {
+            flex: 1;
+            background: #35424a;
+            color: #ffffff;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        .sidebar h1 {
+            font-size: 2.5em;
+            margin: 0;
+            font-weight: bold;
+        }
+
+        .sidebar h2 {
+            font-size: 1.8em;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .sidebar p {
+            font-size: 1.2em;
+            line-height: 1.8;
+            text-align: justify;
+        }
+
+        .sidebar nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+
+        .sidebar nav ul li {
+            margin: 10px 0;
+        }
+
+        .sidebar nav ul li a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 1.2em;
+            transition: color 0.3s;
+        }
+
+        .sidebar nav ul li a:hover {
+            color: #e8491d;
+        }
+
+        /* 右侧内容区样式 */
+        .content {
+            flex: 3;
+            background: #fff;
+            padding: 40px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            margin-left: 20px;
+            overflow-y: auto; /* 垂直滚动条 */
+        }
+
+        .content h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #35424a;
+        }
+
+        .content p {
+            font-size: 1.2em;
+            line-height: 1.8;
+            text-align: justify;
+        }
+
+        .project-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .project-card {
+            width: 250px;
+            height: 250px;
+            flex: 1 1 calc(50% - 20px);
+            background: #f9f9f9;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            overflow: hidden;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            border-radius: 8px;
+            transition: transform 0.3s;
+        }
+
+        .project-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .project-card h3 {
+            font-size: 1.8em;
+            margin: 20px 0 10px;
+            color: #35424a;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .project-card a {
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 1;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                flex: none;
+                width: 100%;
+                margin-bottom: 20px;
+            }
+
+            .content {
+                flex: none;
+                width: 100%;
+                margin-left: 0;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 确保小屏幕下有阴影 */
+                border-radius: 8px; /* 确保小屏幕下有圆角 */
+            }
+
+            .project-card {
+                flex: 1 1 100%;
+                margin-bottom: 20px;
+                width: 100%;
+                height: 500px;
+            }
+
+            .project-card img {
+                height: 500px;
+            }
+
+            .project-card h3 {
+                position: static;
+                margin-top: 10px;
+                background: transparent;
+                color: #35424a;
+            }
+
+            .project-card a {
+                position: static; /* 确保 a 标签在小屏幕下仍然可见 */
+            }
+        }
+
+        /* 隐藏类 */
+        .hidden {
+            display: none;
+        }
+
+        /* 滚动条样式 */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+    </style>
 </head>
 <body>
-  <a href="./多用途响应式税务服务公司官方网站设计/index.html">多用途响应式税务服务公司官方网站设计</a>
-     hello world
+    <div class="container">
+        <div class="sidebar">
+            <h1>梁智洲</h1>
+            <p>个人作品集</p>
+            <nav>
+                <h2>项目分类</h2>
+                <ul>
+                    <li><a href="#small-cases" onclick="showSection('small-cases')">小案例</a></li>
+                    <li><a href="#small-projects" onclick="showSection('small-projects')">小项目</a></li>
+                    <!-- <li><a href="#big-projects" onclick="showSection('big-projects')">大项目</a></li> -->
+                </ul>
+            </nav>
+        </div>
+        <div class="content">
+            <section id="small-cases">
+                <h2>小案例</h2>
+                <div class="project-grid">
+                    <div class="project-card">
+                        <a href="./放大镜.html" target="_blank">
+                            <img src="./images/banner1.jpg" alt="放大镜">
+                            <h3>放大镜</h3>
+                        </a>
+                    </div>
+                    <div class="project-card">
+                        <a href="./无缝轮播图.html" target="_blank">
+                            <img src="./images/k1.jpg" alt="小案例二">
+                            <h3>触摸无缝轮播图</h3>
+                        </a>
+                    </div>
+                    <div class="project-card">
+                        <a href="./拼图游戏多难度.html" target="_blank">
+                            <img src="./images/banner5.jpg" alt="小案例二">
+                            <h3>拼图游戏</h3>
+                        </a>
+                    </div>
+                    <div class="project-card">
+                        <a href="./音乐播放器3.html" target="_blank">
+                            <img src="./images/贾斯丁.png" alt="小案例二">
+                            <h3>音乐播放器</h3>
+                        </a>
+                    </div>
+                    <div class="project-card">
+                        <a href="./作业1-商品管理系统.html" target="_blank">
+                            <img src="./images/nhz.jpg" alt="小案例二">
+                            <h3>商品管理系统</h3>
+                        </a>
+                    </div>
+                    <div class="project-card">
+                        <a href="./作业2-手风琴.html" target="_blank">
+                            <img src="./images/园林酒店.jpg" alt="小案例二">
+                            <h3>手风琴</h3>
+                        </a>
+                    </div>
+                    
+                </div>
+            </section>
+            <section id="small-projects">
+                <h2>小项目</h2>
+                <div class="project-grid">
+                    <div class="project-card">
+                        <a href="./趣学网/index.html" target="_blank">
+                            <img src="./趣学网/images/9.png" alt="小项目一">
+                            <h3>趣学网静态网站</h3>
+                        </a>
+                    </div>
+                    <div class="project-card">
+                        <a href="./柒品商城静态项目/首页.html" target="_blank">
+                            <img src="./柒品商城静态项目/images/切图/banner.png" alt="小项目一">
+                            <h3>柒品商城静态网站</h3>
+                        </a>
+                    </div>
+                    <div class="project-card">
+                        <a href="./阿迪达斯官方旗舰店/bootstrap网站首页.html" target="_blank">
+                            <img src="./阿迪达斯官方旗舰店/images/巨幕.jpg" alt="小项目二">
+                            <h3>bootstrap仿阿迪达斯官方旗舰店</h3>
+                        </a>
+                    </div>
+                    <div class="project-card">
+                        <a href="./仿赌场游戏官方网站/index.html" target="_blank">
+                            <img src="./仿赌场游戏官方网站/assets/images/home-about-us-img.png" alt="小项目二">
+                            <h3>仿赌场游戏官方网站</h3>
+                        </a>
+                    </div>
+                    <!-- 添加更多小项目... -->
+                </div>
+            </section>
+            <!-- <section id="big-projects">
+                <h2>大项目</h2>
+                <div class="project-grid">
+                    <div class="project-card">
+                        <a href="./放大镜.html" target="_blank">
+                            <img src="./images/banner1.jpg" alt="大项目一">
+                            <h3>大项目一</h3>
+                        </a>
+                    </div>
+                    <div class="project-card">
+                        <a href="./无缝轮播图.html" target="_blank">
+                            <img src="./images/k1.jpg" alt="大项目二">
+                            <h3>大项目二</h3>
+                        </a>
+                    </div> -->
+                    <!-- 添加更多大项目... -->
+                <!-- </div>
+            </section> -->
+        </div>
+    </div>
+    <script>
+        function showSection(sectionId) {
+            // 获取所有 section 元素
+            const sections = document.querySelectorAll('.content > section');
+            
+            // 遍历所有 section，将它们全部隐藏
+            sections.forEach(section => {
+                section.classList.add('hidden');
+            });
+
+            // 显示指定的 section
+            const targetSection = document.getElementById(sectionId);
+            if (targetSection) {
+                targetSection.classList.remove('hidden');
+            }
+        }
+
+        // 初始状态下显示所有部分
+        window.onload = function() {
+            const sections = document.querySelectorAll('.content > section');
+            sections.forEach(section => {
+                section.classList.remove('hidden');
+            });
+        };
+    </script>
 </body>
 </html>

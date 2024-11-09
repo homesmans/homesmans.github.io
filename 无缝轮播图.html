@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>无缝轮播</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      ul {
+        list-style: none;
+      }
+
+      #wrap {
+        overflow: hidden;
+        position: relative;
+        width: 480px;
+        height: 580px;
+        margin: 200px auto 0;
+      }
+
+      #wrap .img-list {
+        display: flex;
+        position: relative;
+        left: 0px;
+        width: 100%;
+        height: 100%;
+        transition: 0.5s ease;
+      }
+
+      #wrap .img-list img {
+        width: 100%;
+        cursor: pointer;
+      }
+
+      .circle-list {
+        display: flex;
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translate(-50%, 0);
+        width: 240px;
+        height: 40px;
+        z-index: 8;
+      }
+      .circle-list > .circle {
+        margin: 0 5px;
+        width: 30px;
+        height: 30px;
+        background-color: transparent;
+        border: 2px solid white;
+        border-radius: 50%;
+        transition: background-color 0.3s;
+      }
+
+      .circle-list > .circle.active {
+        background-color: #e74c3c;
+      }
+
+      .controls {
+        display: flex;
+        justify-content: space-between;
+        width: 480px;
+        margin: 20px auto;
+        position: relative;
+      }
+
+      .controls a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        background: linear-gradient(135deg, #ff6f61, #e74c3c);
+        color: white;
+        user-select: none;
+        font-size: 30px;
+        text-align: center;
+        line-height: 1;
+        text-decoration: none;
+        border-radius: 20%;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: background 0.3s, box-shadow 0.3s;
+      }
+
+      .controls a:hover {
+        background: linear-gradient(135deg, #e74c3c, #ff6f61);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="wrap">
+      <!-- 图片列表 -->
+      <div class="img-list">
+        
+        <img src="./images/k1.jpg" />
+        <img src="./images/k2.jpg" />
+        <img src="./images/k3.jpg" />
+        <img src="./images/k4.jpg" />
+        <img src="./images/k5.jpg" />
+        <img src="./images/k1.jpg" /> <!-- 克隆第一张图片 -->
+      </div>
+
+      <!-- 小圆点 -->
+      <ul class="circle-list">
+        <li class="circle active" data-n="0"></li>
+        <li class="circle" data-n="1"></li>
+        <li class="circle" data-n="2"></li>
+        <li class="circle" data-n="3"></li>
+        <li class="circle" data-n="4"></li>
+      </ul>
+    </div>
+
+    <!-- 控制按钮 -->
+    <div class="controls">
+      <a href="javascript:;" class="left"><</a>
+      <a href="javascript:;" class="right">></a>
+    </div>
+
+    <script>
+      // 右按钮
+      let bleft = document.querySelector('.left');
+      let bright = document.querySelector('.right');
+      let bimg = document.querySelector('.img-list');
+      let wrap = document.querySelector('#wrap');
+      let index = 0;
+      // 设置节流锁
+      let lock = true;
+
+      // 右按钮点击事件
+      bright.addEventListener('click', function () {
+        if (!lock) return;
+        index++;
+        bimg.style.transition = '0.5s all';
+        bimg.style.left = index * -480 + 'px';
+        if (index === 5) {
+          index = 0;
+          setTimeout(() => {
+            bimg.style.left = 0;
+            bimg.style.transition = 'none';
+          }, 500);
+        }
+        setCircles();
+        stopAutoplay();
+        lock = false;
+        setTimeout(() => {
+          lock = true;
+        }, 500);
+      });
+
+      // 左按钮点击事件
+      bleft.addEventListener('click', function () {
+        if (!lock) return;
+        index--;
+        if (index === -1) {
+          bimg.style.left = 5 * -480 + 'px';
+          bimg.style.transition = 'none';
+          index = 4;
+          setTimeout(() => {
+            bimg.style.left = index * -480 + 'px';
+            bimg.style.transition = '0.5s all';
+          }, 0);
+        } else {
+          bimg.style.transition = '0.5s all';
+          bimg.style.left = index * -480 + 'px';
+        }
+        setCircles();
+        stopAutoplay();
+        lock = false;
+        setTimeout(() => {
+          lock = true;
+        }, 500);
+      });
+
+      // 设置小圆点的高亮
+      const circles = document.querySelectorAll('.circle');
+
+      function setCircles() {
+        circles.forEach((item, index1) => {
+          if (index1 === index % 5) {
+            item.classList.add('active');
+          } else {
+            item.classList.remove('active');
+          }
+        });
+      }
+      setCircles();
+
+      // 小圆点点击切换图片 使用事件代理人
+      const oCircle = document.querySelector('.circle-list');
+      oCircle.addEventListener('click', function (e) {
+        if (e.target.nodeName === 'LI') {
+          const n = Number(e.target.getAttribute('data-n'));
+          index = n;
+          bimg.style.left = index * -480 + 'px';
+          setCircles();
+          stopAutoplay();
+        }
+      });
+
+      // 触摸事件处理
+      let startX, moveX, moveDistance;
+      wrap.addEventListener('touchstart', function (e) {
+        startX = e.touches[0].clientX;
+        stopAutoplay();
+      });
+
+      wrap.addEventListener('touchmove', function (e) {
+        moveX = e.touches[0].clientX;
+        moveDistance = startX - moveX;
+      });
+
+      wrap.addEventListener('touchend', function (e) {
+        if (Math.abs(moveDistance) > 50) {
+          if (moveDistance > 0) {
+            // 向左滑动
+            bright.click();
+          } else {
+            // 向右滑动
+            bleft.click();
+          }
+        }
+        startAutoplay();
+      });
+
+      let zidon;
+
+      // 自动轮播
+      function zdlb() {
+        zidon = setInterval(() => {
+          index++;
+          bimg.style.transition = '0.5s all';
+          bimg.style.left = index * -480 + 'px';
+          if (index === 5) {
+            index = 0;
+            setTimeout(() => {
+              bimg.style.left = 0;
+              bimg.style.transition = 'none';
+            }, 500);
+          }
+          setCircles();
+        }, 2000);
+      }
+
+      // 停止自动轮播
+      function stopAutoplay() {
+        clearInterval(zidon);
+      }
+
+      // 启动自动轮播
+      function startAutoplay() {
+        stopAutoplay();
+        zdlb();
+      }
+
+      // 鼠标进入和离开时停止和启动自动轮播
+      wrap.addEventListener('mouseenter', function () {
+        clearInterval(zidon);
+      });
+
+      wrap.addEventListener('mouseleave', function () {
+        clearInterval(zidon);
+        zdlb();
+      });
+
+      // 初始化自动轮播
+      zdlb();
+    </script>
+  </body>
+</html>
