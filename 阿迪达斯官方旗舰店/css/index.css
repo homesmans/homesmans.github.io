@@ -116,6 +116,7 @@ body {
     transform: translateY(0);
   }
 }
+
 .shengying {
   width: 20px;
   height: 20px;
@@ -600,96 +601,109 @@ body {
     padding: 10px 0;
     z-index: 1000;
     display: flex;
-    justify-content: space-between; 
+    justify-content: space-between;
     align-items: flex-end;
-}
-.footer-nav a:first-child{
-  color: black;
-}
-.footer-nav a {
+  }
+
+  .footer-nav a:first-child {
+    color: black;
+  }
+
+  .footer-nav a {
     position: relative;
     color: #9a9b9b;
     font-size: 12px;
-    flex: 1; /* 使链接均匀分布并占满整个导航栏 */
-    flex-basis: 0; /* 确保等间距 */
-}
-.footer-nav a .sy{
-   width: 32px;
-   height: 32px;
-   position: absolute;
-   top: -200%;
-   left: 41%;
-   background-image: url(../images/首页1.png);
-   background-repeat: no-repeat;
-   background-size: contain;
-}
-.footer-nav a .fl{
-   width: 32px;
-   height: 32px;
-   position: absolute;
-   top: -200%;
-   left: 41%;
-   background-image: url(../images/分类.png);
-   background-repeat: no-repeat;
-   background-size: contain;
-}
-.footer-nav a .gwd{
-   width: 32px;
-   height: 32px;
-   position: absolute;
-   top: -200%;
-   left: 41%;
-   background-image: url(../images/购物袋.png);
-   background-repeat: no-repeat;
-   background-size: contain;
-}
-.footer-nav a .wd{
-   width: 32px;
-   height: 32px;
-   position: absolute;
-   top: -200%;
-   left: 41%;
-   background-image: url(../images/我的.png);
-   background-repeat: no-repeat;
-   background-size: contain;
-}
-.footer-nav a:last-child {
-    border-right: none; /* 移除最后一个链接的右边框线 */
-}
+    flex: 1;
+    /* 使链接均匀分布并占满整个导航栏 */
+    flex-basis: 0;
+    /* 确保等间距 */
+  }
 
-.footer-nav a:hover {
+  .footer-nav a .sy {
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    top: -200%;
+    right: 35%;
+    background-image: url(../images/首页1.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+
+  .footer-nav a .fl {
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    top: -200%;
+    right: 35%;
+    background-image: url(../images/分类.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+
+  .footer-nav a .gwd {
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    top: -200%;
+    right: 35%;
+    background-image: url(../images/购物袋.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+
+  .footer-nav a .wd {
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    top: -200%;
+    right: 35%;
+    background-image: url(../images/我的.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+
+  .footer-nav a:last-child {
+    border-right: none;
+    /* 移除最后一个链接的右边框线 */
+  }
+
+  .footer-nav a:hover {
     color: black;
-}
-.fl:hover{
-  width: 32px;
-  height: 32px;
-  position: absolute;
-  top: -200%;
-  left: 40%;
-  background-image: url(../images/分类1.png);
-  background-repeat: no-repeat;
-  background-size: contain;
-}
-.gwd:hover{
-  width: 32px;
-  height: 32px;
-  position: absolute;
-  top: -200%;
-  left: 40%;
-  background-image: url(../images/购物袋\ \(1\).png);
-  background-repeat: no-repeat;
-  background-size: contain;
-}
-.wd:hover{
-  width: 32px;
-  height: 32px;
-  position: absolute;
-  top: -200%;
-  left: 40%;
-  background-image: url(../images/我的\ \(1\).png);
-  background-repeat: no-repeat;
-  background-size: contain;
-}
+  }
+
+  .fl:hover {
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    top: -200%;
+    left: 40%;
+    background-image: url(../images/分类1.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+
+  .gwd:hover {
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    top: -200%;
+    left: 40%;
+    background-image: url(../images/购物袋\ \(1\).png);
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+
+  .wd:hover {
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    top: -200%;
+    left: 40%;
+    background-image: url(../images/我的\ \(1\).png);
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
 }
 
 /* 中屏设备 */
@@ -705,9 +719,11 @@ body {
     display: inline-block;
     background: url(../images/搜索.png) no-repeat 10px center / 15px 15px;
   }
+
   .footer-nav {
-    display: none; /* 在大屏设备上隐藏底部导航栏 */
-}
+    display: none;
+    /* 在大屏设备上隐藏底部导航栏 */
+  }
 }
 
 /* 大屏设备 */
@@ -723,9 +739,12 @@ body {
   .fdj {
     display: none;
   }
+
   .footer-nav {
-    display: none; /* 在大屏设备上隐藏底部导航栏 */
-}
+    display: none;
+    /* 在大屏设备上隐藏底部导航栏 */
+  }
+
   .navbar {
     transition: all 0.5s ease;
   }
@@ -734,6 +753,7 @@ body {
     transform: translateY(-100%);
     opacity: 0;
   }
+
   .content {
     padding: 50px 0;
   }
